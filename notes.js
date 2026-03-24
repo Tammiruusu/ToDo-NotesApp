@@ -23,6 +23,24 @@ function saveNote(event) {
     const title = document.getElementById('noteTitle').value.trim();
     const content = document.getElementById('noteContent').value.trim();
 
+    //lisäämme if rakenteen, koska muuten editoidessa saamme uuden muistiinpanon
+    //tallennus nappulan UNSHIFT metodin takia, tällä if rakenteella saamme 
+    //muokattua olemassa olevaa muistiinpanoa
+    if(editingNoteId) { 
+
+        //etsimme tällä vastaavan note ID:n, jotta muokkaus onnistuu
+        const noteIndex = notes.findIndex(note => note.id === editingNoteId)
+        //käytämme SPREAD OPERATORIA, kompleksi, mutta helpottaa myöhemmin, jos halutaan
+        //lisätä kansioita, tägejä, päivämääriä, SPREAD OPERATOR kopioi kaikki arvot ja 
+        //lisää ne sinne
+        notes[noteIndex] = {
+            ...notes[noteIndex],
+            title: title,
+            content: content
+        }
+
+    } else {
+
     //Käytetään aiemmin luotua Arrayta ja lisätään muistiinpanot sinne objekteina
     //unshiftillä saamme lyötyä objektit listaan aina kun uusia lisätään
     //käytetään aiemmin napattuja arvoja TITLE ja CONTENT, generateID luodaan myöhemmin
@@ -30,9 +48,13 @@ function saveNote(event) {
         id: generateId(),
         title: title,
         content: content
-    });
+    })
+    }
 
-    //Kutsutaan funktiota SaveNotes, joka tallentaa ne JSON tiedostona LOCALSTORAGEEN
+
+    //Kutsutaan funktiota SaveNotes, joka tallentaa ne JSON tiedostona LOCALSTORAGEEN, sekä 
+    //funktiota joka sulkee muokkaus/lisäämis ikkunan sekä funktio joka renderöi muutokset näkyviin sivulle
+    closeNoteDialog()
     saveNotes()
     renderNotes()
 
@@ -107,6 +129,8 @@ function renderNotes() {
 
 //Funktio joka avaa muistiinpanot
 //noteide = null voimme antaa default arvon idhen
+//Jos emme anna arvoa Elsessä, se on null, mutta if:ssä annoimme
+//joten se pitää paikkansa, edit notessa HTML:ssä haemme asiaa jo NoteId:llä
 function openNoteDialog(noteId = null) {
     //Elementit kaapattu ID:n kautta Notes.html:stä
     const dialog = document.getElementById('noteDialog');
