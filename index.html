@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+    <link rel="stylesheet" href="style.css">
+    <!--Defer käsky Scriptissä suorittaa JS:n vasta kun html ja css ovat ladanneet ensin-->
+    <script src="app.js" defer></script>
+    <style>@import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
+    </style>
+</head>
+<body>
+    <!--LÄPINÄKYVÄ MENU-->
+    <nav>
+    <div class="logo">To Do App</div>
+    <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    <ul id="menu">
+        <li><a href="/index.html">Koti</a></li>
+        <li><a href="notes.html">Muistiinpanot</a></li>
+    </ul>
+    </nav>
+
+
+    <h1>To Do App</h1>
+    <div class="wrapper">
+        <form>
+            <input id="todo-input" type="text" 
+            placeholder="Kirjoita tehtäväsi ja paina Enter" autocomplete="off">
+            <button id="add-button"> Lisää</button>
+        </form>
+        <ul id="todo-list">
+
+        </ul>
+    </div>
+    
+
+<footer>
+	<p>
+        ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.
+	</p>
+</footer>
+</body>
+</html>

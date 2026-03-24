@@ -1,0 +1,333 @@
+:root{
+    --background: #0C0D07;
+    --primary-color: #242616;
+    --secondary-color: #53593C;
+    --accent-color: #A3F150;
+    --text-color: #ECF2DF;
+}
+
+
+/*Kun padding ja Margin alussa nollanna, saa kaikki suoraan nolattua*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*Tekstiä varten asetukset, Fontin väri haettu ROOTISTA*/
+html{
+    font-family: "New Rocker", system-ui;
+    font-size: 16pt;
+    color: var(--text-color);
+}
+
+/*Bodyssa annettu minimipituus, vähän paddingiä sekä taustaväri haettu rootista. Flex myös käytössä responsiivisuuden lisäämiseksi*/
+body{
+    background-image: url(/Images/Todo-Background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background 0.3s ease-in-out;
+    min-height: 100vh; /*Koko näytön kokoinen*/
+    padding: 10px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column; /*Flexbox järjestää tavarat nyt pystysuoraan*/
+    align-items: center; /*Keskittää itemit*/
+}
+
+h1 {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 5rem; /*h1 otsikko on nyt 3 kertaa suurempi kuin standardi fontti koko*/
+    font-weight: 800; 
+    text-transform: uppercase; 
+    text-align: center;
+    color: var(--accent-color);
+    text-shadow:
+        -2px -2px 0 var(--primary-color),
+        2px -2px 0 var(--primary-color),
+        -2px  2px 0 var(--primary-color),
+        2px  2px 0 var(--primary-color);
+}
+
+.wrapper {
+    width: 700px; /*suurilla näytöillä leveys on 700px*/
+    max-width: 100%; /*huolehtii, että pienemmillä laitteilla leveys on 100%*/
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /*Itemien välissä pieni hengitysrako*/
+}
+
+#todo-input {
+    box-sizing: border-box; /*Pitää kaikki nätisti supussa, vaikka lisäisi paddingiä, helpompi hallita layoutia ja designia, eli height ja width hallitsevat design elementtiä. Kun taas padding ja border vaikuttavat sisennetysti*/
+    padding: 12px 20px; 
+    width: 100%; /*input field on nyt koko Wrapperin kokoinen*/
+    background: none;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px; /*pyöristetyt kulmat*/
+    font: inherit; /*perii aiemmat fonttiasetukset*/
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+}
+
+
+/*Poistaa Input kentän 'Highlight' elementin, eri selaimilla on eriväriset highlight värit, kun aloitat kirjoittamisen, jotka saattavat häiritä Appin ulkoasua*/
+#todo-input:focus {
+    outline: none;
+}
+
+
+/*siirretään Add button input-kentän oikeaan reunaan, koska right ja top on 0*/
+form {
+    position: relative;
+}
+
+#add-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /*Buttonin tyylit alla*/
+    background-color: var(--accent-color);
+    height: 100%;
+    padding: 0 30px;
+    border: none;
+    border-radius: 1000px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--background);
+    cursor: pointer;
+}
+
+.todo {
+    margin-bottom: 10px;
+    padding: 0 16px;
+    /*Piti vaihtaa VAR väri RBGA:ksi, jotta saan hiukan läpinäkyvyyttä*/
+    background-color: rgba(36, 38, 22, 0.4);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+
+/*Koska alussa oli määritetty todo padding ja margin 0:ksi, nyt saadaan muokattua niin että teksti kasvaa*/
+.todo .todo-text{
+    padding: 15px;
+    padding-right: 0;
+    flex-grow: 1; /*varmistaa, että teksti osuus vie niin paljon tilaa kuin parent-elementti sallii, työntää iconit reunoihin*/
+    transition: 200ms ease; /*Teksti vaihtaa väriä nätimmin*/
+}
+
+
+/*Flexbox keskittää delete buttonin keskelle pystyy- ja vaakasuoraan Justifyn ja alingin takia. Nappi tausta katosi myös, nyt näkyy vain iconi*/
+.delete-button{
+    padding: 3px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/*Delete button vaihtaa väriä nätimmin*/
+.delete-button svg {
+    transition: 200ms ease;
+}
+
+.delete-button:hover svg {
+    fill: #BB000C;
+}
+
+/*tehdään ympyrä DONE iconin ympärille, ja varmistetaan, että se pysyy ympyränä*/
+.custom-checkbox {
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px; /*Min height ja width takaa, että ympyrä ei mene luttuun*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /*takaa ettei muut elementit purista sitä luttuun, eli ympyrä pysyy ympyränä muista elementeistä riippumatta*/
+    transition: 200ms ease; /*tehtävä tehty väri vaihdos näyttää nätimmältä*/
+    cursor: pointer;
+}
+
+
+/*Käytettiin pseudo-classia Checked, jolla saadaan DONE ympyrään väri, kun klikataan sitä*/
+input[type="checkbox"]:checked ~ .custom-checkbox {
+    background-color: var(--accent-color);
+}
+
+/*kun checkbox aktivoituu, meidän svg tulee näkyviin*/
+input[type="checkbox"]:checked ~ .custom-checkbox svg {
+    fill: var(--primary-color);
+}
+
+/*~ on sibling selector, nyt kun on klikattu taskia, sen yli menee viiva ja väri muuttuu harmaaksi*/
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+/*piilotetaan perus checkbox, jotta vain meidän hieno ympyrä näkyy*/
+input[type="checkbox"]{
+    display: none;
+}
+
+
+/*Mobiili asetukset, vaihdetaan fontti kokoa, add button menee input kentän alle*/
+@media(max-width: 500px){
+    html{
+        font-size: 12pt;
+    }
+    /*Add buttonin asetukset, aikaiseemin se oli liimaattu kiinni absoluuttisella ja nyt se irrotetaan pienemmälle ruudulle inputin alle*/
+    #add-button{
+        position: unset;
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+        height: auto;
+    }
+    h1{
+        margin-top: 50px;
+        font-size: 15vw; /*viewpointwidth, eli ihan pienillä mobiiliruuduilla, otsikko on pienempi verrattuna hiukan isompiin mobiili ruutuihin*/
+    }
+}
+
+/*ENTRANCE PAGE STYLES*/
+
+.Welcometxt {
+    font-size: 6rem;
+}
+
+#enterBTN {
+    background-color: var(--accent-color);
+    height: 100%;
+    padding: 5px 70px;
+    border: none;
+    border-radius: 1000px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--background);
+    cursor: pointer;
+    margin-top: 50px;
+
+}
+
+#enterBTN:hover{
+    background: var(--background);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 10px 85px;
+    transform: scale(1.05);
+    transition: ease-in 0.5s;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.2); 
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.Welcometxt {
+    margin-top: 300px;
+}
+
+
+/*LÄPINÄKYVÄ MENU*/
+
+nav {
+        position: fixed;
+        top: 20px;
+        width: 90%;
+        max-width: 1000px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 25px;
+        background: rgba(36, 38, 22, 0.2);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--secondary-color);
+        color: var(--text-color);
+        z-index: 1000;
+    }
+
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: var(--accent-color);
+    }
+
+    /* MOBIILI MENU */
+    .menu-toggle {
+        display: none;
+        font-size: 12pt;
+        cursor: pointer;
+    }
+
+
+    @media (max-width: 500px) {
+        nav ul {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: rgba(36, 38, 22, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--accent-color);
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
+            display: none;
+        }
+
+        nav ul.active {
+            display: flex;
+        }
+
+        .menu-toggle {
+            display: block;
+        }
+    }
+
+
+/*NOTES OSUUS*/
+
+
