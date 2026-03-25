@@ -192,7 +192,7 @@ function toggleTheme(){
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
     //tällä vaihdetaan buttonin tekstiä/ikonia, jos on darkmode päällä, tulee näkyviin
     //Sun, jos taas ei, tulee Moon
-    document.getElementById('themeToggleBtn').textContent = isDark ? 'Sun' : 'Moon'
+    document.getElementById('themeToggleBtn').innerHTML = isDark ? '<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#A3F150"><path d="M600-640 480-760l120-120 120 120-120 120Zm200 120-80-80 80-80 80 80-80 80ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 99 11 193.5T520-521q71 71 165.5 100T879-410q-26 144-138 237T483-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T463-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T159-484q0 135 94.5 229.5T483-160Zm-20-305Z"/></svg>' : '<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#A66583"><path d="m843-60-85-85q-49 30-107 24t-101-49q-29-29-41-66.5t-7-75.5q-38 5-75.5-7T360-360q-29-29-41-66.5t-7-75.5q-38 5-75.5-7T170-550q-43-43-49-101.5T145-759l-85-85 56-56 86 85q49-30 107-24t101 49q29 29 41 66t7 75q38-5 75.5 7.5T600-600q29 29 41 66t7 75q38-5 75.5 7.5T790-410q43 43 49 101t-24 107l85 85-57 57ZM670-200q38 0 64-26t26-64q0-38-26-64t-64-26q-38 0-64 26t-26 64q0 38 26 64t64 26ZM480-390q38 0 64-26t26-64q0-38-26-64t-64-26q-38 0-64 26t-26 64q0 38 26 64t64 26ZM354-606q26-26 26-64t-26-64q-26-26-64-26t-64 26q-26 26-26 64t26 64q26 26 64 26t64-26Zm316 316ZM480-480ZM290-670Z"/></svg>'
 }
 
 
@@ -204,7 +204,7 @@ function applyStoredTheme(){
     //jos on, tee nämä muutokset
     if(localStorage.getItem('theme') === 'dark')
         document.body.classList.add('theme')
-        document.getElementById('themeToggleBtn').textContent = 'Sun'     
+        document.getElementById('themeToggleBtn').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px" fill="#A3F150"><path d="M600-640 480-760l120-120 120 120-120 120Zm200 120-80-80 80-80 80 80-80 80ZM483-80q-84 0-157.5-32t-128-86.5Q143-253 111-326.5T79-484q0-146 93-257.5T409-880q-18 99 11 193.5T520-521q71 71 165.5 100T879-410q-26 144-138 237T483-80Zm0-80q88 0 163-44t118-121q-86-8-163-43.5T463-465q-61-61-97-138t-43-163q-77 43-120.5 118.5T159-484q0 135 94.5 229.5T483-160Zm-20-305Z"/></svg>'     
 }
 
 //Tärkein Eventlistener, se odottaa, että kaikki pää elementit on ladattu
