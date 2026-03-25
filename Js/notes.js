@@ -182,7 +182,7 @@ function openNoteDialog(noteId = null) {
         //emme muokkaa sit
         editingNoteId = null
         //Otsikko muutetaan takaisin lisää uusi muistiinpano
-        document.getElementById('dialogTitle').textContent = "Add New Note"
+        document.getElementById('dialogTitle').textContent = "Lisää uusi muistiinpano"
         //tekstikentät ovat tyhjiä näillä arvoilla
         titleInput.value = ''
         contentInput.value = ''
