@@ -21,8 +21,8 @@
     --primary-color: #07090D;
     --secondary-color:  #A66583;
     --accent-color: #F2A7C3;
-    --text-color: #BF505A;
-    --secondary-text-color: #2C3A40;
+    --text-color: #4d182f;
+    --secondary-text-color: #A24C61;
     --base-transparent-90: rgba(247, 247, 247, 0.9);
     --base-transparent-100: rgba(247, 247, 247, 1);
     background-image: url(/Images/Pink-Theme.png);
@@ -54,6 +54,10 @@ h1 {
         2px -2px 0 var(--primary-color),
         -2px  2px 0 var(--primary-color),
         2px  2px 0 var(--primary-color);
+}
+
+h3 {
+  font-size: 50px;
 }
 
 button, input, textarea {
@@ -121,7 +125,12 @@ header {
 }
 
 .note-title {
-  font-size: 1.25rem;
+  font-size: 1.8rem;
+      text-shadow:
+        -2px -2px 0 var(--background),
+        2px -2px 0 var(--background),
+        -2px  2px 0 var(--background),
+        2px  2px 0 var(--background);
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--text-color);
@@ -130,6 +139,7 @@ header {
 
 .note-content {
   color: var(--secondary-text-color);
+  font-size: 1.25rem;
   line-height: 1.6;
   margin-bottom: 1rem;
   word-wrap: break-word;
