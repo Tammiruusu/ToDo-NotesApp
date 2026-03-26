@@ -1,0 +1,89 @@
+:root{
+    --background: #0C0D07;
+    --primary-color: #242616;
+    --input-color: #53593C;
+    --accent-color: #A3F150;
+    --text-color: #ECF2DF;
+}
+
+/*Tekstiä varten asetukset, Fontin väri haettu ROOTISTA*/
+html{
+    font-family: "New Rocker", system-ui;
+    font-size: 16pt;
+    color: var(--text-color);
+}
+
+body{
+    background-image: url(/Images/Todo-Background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    transition: background 0.3s ease-in-out;
+    min-height: 100vh; /*Koko näytön kokoinen*/
+    padding: 10px;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column; /*Flexbox järjestää tavarat nyt pystysuoraan*/
+    align-items: center; /*Keskittää itemit*/
+}
+
+
+
+
+
+
+/*ENTRANCE PAGE STYLES*/
+
+.Welcometxt {
+    font-size: 6rem;
+}
+
+#enterBTN {
+    background-color: var(--accent-color);
+    height: 100%;
+    padding: 5px 70px;
+    border: none;
+    border-radius: 1000px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--background);
+    cursor: pointer;
+    margin-top: 50px;
+
+}
+
+#enterBTN:hover{
+    background: var(--background);
+    border: 1px solid var(--accent-color);
+    color: var(--text-color);
+    padding: 10px 85px;
+    transform: scale(1.05);
+    transition: ease-in 0.5s;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.2); 
+    color: var(--text-color);
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.Welcometxt {
+    margin-top: 300px;
+}
