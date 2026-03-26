@@ -15,7 +15,7 @@
 /*Tekstiä varten asetukset, Fontin väri haettu ROOTISTA*/
 html{
     font-family: "New Rocker", system-ui;
-    font-size: 14pt;
+    font-size: 12pt;
     color: var(--text-color);
     text-align: center;
 }
@@ -61,6 +61,7 @@ h1 {
 }
 
 form{
+    /*Käyttää pienintä arvoa, joko 400px tai 100%*/
     width: min(400px, 100%);
     margin-top: 20px;
     margin-bottom: 50px;
@@ -69,6 +70,38 @@ form{
     align-items: center;
     gap: 10px;
 }
+
+/*käytetään lapsi elementtiä, jotta saadaan flexin käyttö myös siihen*/
+form > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+form label {
+    flex-shrink: 0;
+    height: 50px;
+    width: 50px;
+    background-color: var(--accent-color);
+    fill: var(--background);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    box-sizing: border-box;
+    flex-grow: 1;
+    min-width: 0;
+    height: 50px;
+    padding: 1em;
+    font: inherit;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    background-color: var(--input-color);
+}
+
 
 
 
