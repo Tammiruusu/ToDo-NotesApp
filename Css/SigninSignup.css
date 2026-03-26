@@ -1,35 +1,74 @@
 :root{
     --background: #0C0D07;
-    --primary-color: #242616;
+    --base-color: #242616;
     --input-color: #53593C;
     --accent-color: #A3F150;
     --text-color: #ECF2DF;
 }
 
+/*Kun padding ja Margin alussa nollanna, saa kaikki suoraan nolattua*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
 /*Tekstiä varten asetukset, Fontin väri haettu ROOTISTA*/
 html{
     font-family: "New Rocker", system-ui;
-    font-size: 16pt;
+    font-size: 14pt;
     color: var(--text-color);
+    text-align: center;
 }
 
 body{
     background-image: url(/Images/Todo-Background.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: left;
     background-attachment: fixed;
     transition: background 0.3s ease-in-out;
     min-height: 100vh; /*Koko näytön kokoinen*/
     padding: 10px;
     background-color: var(--background);
-    display: flex;
+    overflow: hidden;
+}
+
+.wrapper {
+    /*Border boxilla kaikki muutokset tapahtuu sisäänpäin, nähdään nyt molemmat pyöristetyt kulmat, ei ylivuotoa*/
+    box-sizing: border-box;
+    background-color: rgba(36, 38, 22, 0.4);
+    height: 100vh;
+    /*ottaa käyttöön kumpi vaan on isompi arvo */
+    width: max(40%, 600px);
+    padding: 10px;
+    border-radius: 0 20px 20px 0;
+        display: flex;
     flex-direction: column; /*Flexbox järjestää tavarat nyt pystysuoraan*/
     align-items: center; /*Keskittää itemit*/
 }
 
+h1 {
+    /*3 rem tarkoittaa 3 kertaa htmlssä annetun tekstin koko*/
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--accent-color);
+        text-shadow:
+        -2px -2px 0 var(--primary-color),
+        2px -2px 0 var(--primary-color),
+        -2px  2px 0 var(--primary-color),
+        2px  2px 0 var(--primary-color);
+}
 
-
+form{
+    width: min(400px, 100%);
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
 
 
 
