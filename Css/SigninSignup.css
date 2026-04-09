@@ -99,8 +99,75 @@ form input {
     font: inherit;
     border-radius: 0 10px 10px 0;
     border: none;
+    /*muutos kun hiiri on input kentän kohdalla menee nätimmin, vaikka väri on näkymätön
+    Sen sijaan, että sitä ei olisi merkattu*/
+    border: 2px solid var(--input-color); 
+    /*KOska annettiin yllä borderi, vaikka näkymätön, niin se ei kasva tuhottomasti*/
+    border-left: none;
     background-color: var(--input-color);
+    transition: 150ms ease;
 }
+
+form input:hover {
+    border: 2px solid var(--accent-color);
+}
+
+/*Nätimpi FOCUS effecti input kentässä*/
+form input:focus {
+    outline: none;
+    border-color: var(--text-color);
+}
+
+/*Lapsi elementti käytössä*/
+div:has(input:focus) > label {
+    background-color: var(--text-color);
+}
+
+/*tarkennetaan mikä lapsi elementti kyseessä*/
+form input::placeholder {
+    color: var(--accent-color);
+    opacity: 1;
+}
+
+form button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: .85em 4em;
+    background-color: var(--accent-color);
+    font: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--text-color);
+}
+
+form button:focus {
+    outline: none;
+    background-color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/*Media query, jossa MIN efekti tuo koon toimimaan riippuen kumpi
+arvo on pienempi. tabletti vs mobiili*/
+@media(max-width: 1100px){
+    .wrapper {
+        width: min(600px, 100%);
+    }
+}
+
 
 
 
