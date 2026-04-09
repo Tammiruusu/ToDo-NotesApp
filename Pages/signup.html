@@ -6,7 +6,7 @@
     <title>To Do App</title>
     <link rel="stylesheet" href="/Css/SigninSignup.css">
     <!--Defer käsky Scriptissä suorittaa JS:n vasta kun html ja css ovat ladanneet ensin-->
-    <script src="/Js/app.js" defer></script>
+    <script type="text/javascript" src="/Js/validation.js" defer></script>
     <style>@import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
     </style>
 </head>
@@ -18,9 +18,9 @@
     <div class="wrapper">
 
         <h1 class="Welcometxt">Kirjaudu Sisään</h1>
-        <form action="">
+        <form>
 
-            <div>
+            <div class="incorrect">
                 <!--Labelin for attribuuttin takia, klikkaamalla svg iconia, kyseinen input field activoituu-->
                 <!--Vamppyyri svg iconi-->
                 <label for="firstname-input">
