@@ -237,3 +237,7 @@ footer a {
 .Welcometxt {
     margin-top: 300px;
 }
+
+#error-message {
+    color: red;
+}

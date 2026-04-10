@@ -4,6 +4,7 @@ const lastname_input = document.getElementById('lastname-input')
 const email_input = document.getElementById('email-input')
 const password_input = document.getElementById('password-input')
 const repeat_password_input = document.getElementById('repeat-password-input')
+const error_message = document.getElementById('error-message')
 
 form.addEventListener('submit', (e) => {
     //estetään lomakkeen submittaus, jos siinä on virhe
@@ -29,11 +30,16 @@ form.addEventListener('submit', (e) => {
         //estetään lomakkeen lähetys, jos Errors listalla on yhtäkään virhettä
         //niin kauan kuin se on suurempi kuin nolla, niin lomaketta ei voi lähettää
         e.preventDefault()
+        //tuodaan virheilmoitukset näkyviin Join metodin avulla P kenttään HTML puolelle
+        //Join pystyy tuomaan useamman listan itemin näkyviin, siksi piste. Jos on useampi kenttä tyhjä
+        //ne erotetaan pisteellä
+        error_message.innerText = errors.join (". ")
     }
 })
 
 
-function getSignupFormErrors(firstname, lastname, email, password, repeatPassword) {
+function getSignupFormErrors(firstname, lastname, email, password) {
+    
     let errors = []
 
     if(firstname === '' || firstname === null) {
@@ -48,7 +54,6 @@ function getSignupFormErrors(firstname, lastname, email, password, repeatPasswor
         //virhe ilmoitus pitää tuoda näkyviin käyttäjälle
         lastname_input.parentElement.classList.add('incorrect')
     }
-
     
     if(email === '' || email === null) {
         errors.push('Tarvitaan Sähköposti osoite')
