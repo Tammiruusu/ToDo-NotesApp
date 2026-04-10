@@ -211,10 +211,10 @@ function toggleTheme(){
     //jotta tumma moodi pysyy sivun päivittyessä, se pitää tallentaa
     //local storageen SetItemin avulla, jolla se on tallennettu ehdolla
     //isDark? 
-    localStorage.setItem('theme', isDark ? 'Cthulhu' : 'Kawaii')
+    localStorage.setItem('theme', isDark ? '🦑' : '🍡')
     //tällä vaihdetaan buttonin tekstiä/ikonia, jos on darkmode päällä, tulee näkyviin
     //Sun, jos taas ei, tulee Moon
-    document.getElementById('themeToggleBtn').innerHTML = isDark ? 'Kawaii' : 'Cthulhu'
+    document.getElementById('themeToggleBtn').innerHTML = isDark ? '🍡' : '🦑'
 }
 
 
@@ -224,9 +224,9 @@ function toggleTheme(){
 function applyStoredTheme(){
     //haetaan local storagesta teeman tiedot, onko dark mode valittu?
     //jos on, tee nämä muutokset
-    if(localStorage.getItem('theme') === 'Cthulhu')
+    if(localStorage.getItem('theme') === '🦑')
         document.body.classList.add('theme')
-        document.getElementById('themeToggleBtn').innerHTML = 'Kawaii'     
+        document.getElementById('themeToggleBtn').innerHTML = '🍡'     
 }
 
 //Tärkein Eventlistener, se odottaa, että kaikki pää elementit on ladattu
