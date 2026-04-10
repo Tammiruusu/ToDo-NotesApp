@@ -38,8 +38,8 @@ form.addEventListener('submit', (e) => {
 })
 
 
-function getSignupFormErrors(firstname, lastname, email, password) {
-    
+function getSignupFormErrors(firstname, lastname, email, password, repeatPassword) {
+
     let errors = []
 
     if(firstname === '' || firstname === null) {
@@ -68,5 +68,24 @@ function getSignupFormErrors(firstname, lastname, email, password) {
         password_input.parentElement.classList.add('incorrect')
     }
 
+    if( password !== repeatPassword){
+        errors.push('Salasanat eivät ole samat')
+        password_input.parentElement.classList.add('incorrect')
+        repeat_password_input.parentElement.classList.add('incorrect')
+    }
+
     return errors;
 }
+
+const allInputs = [firstname_input, lastname_input, email_input, password_input, repeat_password_input]
+
+//tällä poistetaan Eventlisterin kautta INCORRECT luokka, kun käyttäjä kirjoittaa input kenttään
+allInputs.forEach(input => {
+    input.addEventListener('input', () => {
+        if(input.parentElement.classList.contains('incorrect')){
+            input.parentElement.classList.remove('incorrect')
+            //tyhjennetäöän virheilmoitukset myös
+            error_message.innerHTML= ''
+        }
+    })
+})
