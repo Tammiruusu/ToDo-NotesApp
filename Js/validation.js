@@ -68,6 +68,12 @@ function getSignupFormErrors(firstname, lastname, email, password, repeatPasswor
         password_input.parentElement.classList.add('incorrect')
     }
 
+    if(password.length < 8){
+        errors.push('Salasanan pitää olla 8 merkkiä pitkä')
+        password_input.parentElement.classList.add('incorrect')
+    }
+
+    //Täsmäävätkö salasanat keskenään, jos ei, tulee virhe ilmoitus ja INCORRECT LUOKKA
     if( password !== repeatPassword){
         errors.push('Salasanat eivät ole samat')
         password_input.parentElement.classList.add('incorrect')
