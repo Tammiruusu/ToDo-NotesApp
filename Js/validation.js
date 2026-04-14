@@ -83,7 +83,43 @@ function getSignupFormErrors(firstname, lastname, email, password, repeatPasswor
     return errors;
 }
 
-const allInputs = [firstname_input, lastname_input, email_input, password_input, repeat_password_input]
+function getLoginFormErrors (email, password) {
+    let errors = []
+
+
+        if(email === '' || email === null) {
+        errors.push('Tarvitaan Sähköposti osoite')
+        //virhe ilmoitus pitää tuoda näkyviin käyttäjälle
+        email_input.parentElement.classList.add('incorrect')
+    }
+
+    
+    if(password === '' || password === null) {
+        errors.push('Tarvitaan Salasana')
+        //virhe ilmoitus pitää tuoda näkyviin käyttäjälle
+        password_input.parentElement.classList.add('incorrect')
+    }
+
+    if(password.length < 8){
+        errors.push('Salasanan pitää olla 8 merkkiä pitkä')
+        password_input.parentElement.classList.add('incorrect')
+    }
+
+    //Täsmäävätkö salasanat keskenään, jos ei, tulee virhe ilmoitus ja INCORRECT LUOKKA
+    if( password !== repeatPassword){
+        errors.push('Salasanat eivät ole samat')
+        password_input.parentElement.classList.add('incorrect')
+        repeat_password_input.parentElement.classList.add('incorrect')
+    }
+
+    return errors;
+}
+
+
+const allInputs = [firstname_input, lastname_input, email_input, password_input, repeat_password_input].filter(input => input != null)
+//filterillä saamme samat inputit käyttöön LOGIN sivulla, mutta koska INPUTTEJA on vähemmän, niin puuttuvat aiheittaisuvat errorin!
+//Nyt ei tarvitse kirjoittaa samaa koodia uusiksi, vaan voidaan käyttää jo olemassa olevaa
+
 
 //tällä poistetaan Eventlisterin kautta INCORRECT luokka, kun käyttäjä kirjoittaa input kenttään
 allInputs.forEach(input => {
