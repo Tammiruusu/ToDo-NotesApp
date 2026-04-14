@@ -4,6 +4,7 @@
     --secondary-color: #53593C;
     --accent-color: #A3F150;
     --text-color: #ECF2DF;
+    --button-text-color: #0C0D07;
     --secondary-text-color: #3c404f;
     --base-transparent-90: rgba(247, 247, 247, 0.9);
     --base-transparent-100: rgba(247, 247, 247, 1);
@@ -15,7 +16,8 @@
     --secondary-color:  #A66583;
     --accent-color: #F2A7C3;
     --text-color: #BF505A;
-    --secondary-text-color: #2C3A40;
+    --button-text-color: #07090D;
+    --secondary-text-color: #07090D;
     --base-transparent-90: rgba(247, 247, 247, 0.9);
     --base-transparent-100: rgba(247, 247, 247, 1);
     background-image: url(/Images/Pink-Theme.png);
@@ -81,7 +83,7 @@ h1 {
     border: 2px solid var(--secondary-color);
     border-radius: 1000px; /*pyöristetyt kulmat*/
     font: inherit; /*perii aiemmat fonttiasetukset*/
-    color: var(--text-color);
+    color: var(--secondary-text-color);
     caret-color: var(--accent-color);
 }
 
@@ -109,7 +111,7 @@ form {
     border-radius: 1000px;
     font: inherit;
     font-weight: 600;
-    color: var(--background);
+    color: var(--button-text-color);
     cursor: pointer;
 }
 
@@ -340,3 +342,29 @@ nav {
             display: block;
         }
     }
+
+
+/*Teeman vaihto nappulan asetukset*/    
+.theme-toggle-btn {
+  background: var(--surface-color);
+  color: var(--text-color);
+  border: 1px solid var(--surface-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-left: 1rem;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--brand-color);
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}

@@ -185,3 +185,44 @@ function getTodos(){
     menuToggle.addEventListener('click', () => {
         menu.classList.toggle('active');
     });
+
+
+//teeman vaihto nappi
+function toggleTheme(){
+    //Togglella nappaamme kiinni Body:ssa olevaan Dark-theme luokkaan
+    //Sillä saamme helposti otettua käyttöön siellä annetut arvot
+    //tämä kuitenkin vaihtuu takaisin perus teemaan, kun sivua päivitetään
+    //ellei sitä arvoa tallenneta jonnekin
+    const isDark = document.body.classList.toggle('dark-theme')
+    //jotta tumma moodi pysyy sivun päivittyessä, se pitää tallentaa
+    //local storageen SetItemin avulla, jolla se on tallennettu ehdolla
+    //isDark? 
+    localStorage.setItem('theme', isDark ? '🦑' : '🍡')
+    //tällä vaihdetaan buttonin tekstiä/ikonia, jos on darkmode päällä, tulee näkyviin
+    //Sun, jos taas ei, tulee Moon
+    document.getElementById('themeToggleBtn').innerHTML = isDark ? '🍡' : '🦑'
+}
+
+
+//tällä saamme tallennetun teeman käyttöön, kun sivu päivittyy
+//parantaa käyttäjän kokemusta, kun ei aina tarvitse vaihtaa teemaa haluttuun
+//joka kerta kun vierailee sivulla
+function applyStoredTheme(){
+    //haetaan local storagesta teeman tiedot, onko dark mode valittu?
+    //jos on, tee nämä muutokset
+    if(localStorage.getItem('theme') === '🦑')
+        document.body.classList.add('theme')
+        document.getElementById('themeToggleBtn').innerHTML = '🍡'     
+}
+
+
+//Tärkein Eventlistener, se odottaa, että kaikki pää elementit on ladattu
+//Ja sillä saadaan suljettua Muistiinpano ikkuna, kun klikataan ikkunan
+//ulkopuolelle, sekä submit tapahtuma
+document.addEventListener('DOMContentLoaded', function() {
+
+        //Kaapataan HTML:stä teeman vaihtonappi, annetaan sille funktio ja lisätään funktio
+    //ylöpuolelle
+    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme)
+
+    });
